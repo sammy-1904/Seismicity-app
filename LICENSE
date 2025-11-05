@@ -1,0 +1,50 @@
+MIT License
+
+Copyright (c) 2025 Sameer Rawat
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Data License
+
+The ISC-GEM Global Instrumental Earthquake Catalogue used in this application 
+is distributed under the Creative Commons Attribution-ShareAlike 3.0 Unported 
+License (CC-BY-SA 3.0).
+
+Citation: International Seismological Centre (2025), ISC-GEM Earthquake Catalogue, 
+https://doi.org/10.31905/D808B825
+
+For more information about the ISC-GEM Catalogue license and usage terms, 
+visit: http://www.isc.ac.uk/iscgem/
+
+---
+
+## Third-Party Licenses
+
+This project includes third-party components with their own licenses:
+
+- **AdminLTE**: MIT License
+- **Bootstrap**: MIT License
+- **React**: MIT License
+- **Leaflet**: BSD 2-Clause License
+- **Recharts**: MIT License
+- **Font Awesome**: Font Awesome Free License
+
+Please refer to each component's repository for specific license details.

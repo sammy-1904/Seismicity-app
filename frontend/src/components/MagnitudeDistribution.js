@@ -171,7 +171,7 @@ const MagnitudeDistribution = ({ data }) => {
     return (
       <div className="h-80 flex items-center justify-center">
         <div className="text-center text-gray-400">
-          <div className="text-4xl mb-4">📊</div>
+          <div className="text-2xl font-semibold mb-4">Magnitude Distribution</div>
           <p className="text-lg">No magnitude data available</p>
           <p className="text-sm">Fetch earthquake data to analyze magnitude distribution</p>
         </div>
@@ -286,13 +286,94 @@ const MagnitudeDistribution = ({ data }) => {
         })}
       </div>
 
-      {/* Distribution Info */}
-      <div className="bg-green-500/10 border border-green-500/30 p-4 rounded-xl">
-        <h4 className="font-bold text-green-400 mb-2">📈 Distribution Analysis</h4>
-        <div className="text-sm text-gray-300 space-y-2">
-          <p><strong className="text-green-300">Frequency-Magnitude:</strong> Most earthquakes are small; each magnitude increase represents ~32x more energy</p>
-          <p><strong className="text-blue-300">Energy Release:</strong> A few large earthquakes typically dominate total energy release</p>
-          <p><strong className="text-yellow-300">Statistical Distribution:</strong> Natural earthquake magnitudes often follow exponential distribution patterns</p>
+      {/* Educational Content */}
+      <div className="space-y-4">
+        {/* What is Being Displayed */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">What This Chart Shows</h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            This histogram displays the frequency distribution of earthquake magnitudes, 
+            showing how many earthquakes fall within each magnitude range. The color gradient represents intensity levels.
+          </p>
+          <div className="bg-white p-4 rounded border border-slate-200">
+            <p className="text-sm text-slate-600 mb-2">Bars: Number of earthquakes in each 0.5 magnitude bin</p>
+            <p className="text-sm text-slate-600 mb-2">Colors: Green (minor) → Yellow → Orange → Red (major)</p>
+            <p className="text-sm text-slate-600">Statistics: Mean, median, max magnitude, and standard deviation</p>
+          </div>
+        </div>
+
+        {/* Energy Calculation Explained */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">How Seismic Energy is Calculated</h4>
+          <div className="bg-white p-4 rounded border border-slate-200 mb-3">
+            <p className="text-center text-xl font-mono text-slate-700 mb-2">
+              log₁₀(E) = 1.5 × M + 9.1
+            </p>
+            <div className="text-sm text-slate-600 space-y-1">
+              <p>• E = Energy released in Joules</p>
+              <p>• M = Moment magnitude (Mw)</p>
+              <p>• 1.5 = Scaling factor (energy increases exponentially)</p>
+            </div>
+          </div>
+          
+          <h5 className="font-semibold text-slate-700 mb-2">Key Insights:</h5>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li>• Exponential Growth: Each magnitude unit = ~31.6× more energy (10^1.5 ≈ 31.6)</li>
+            <li>• Energy Dominance: One M7.0 releases as much energy as ~1,000 M5.0 earthquakes</li>
+            <li>• Comparison: M6.0 ≈ Hiroshima atomic bomb; M9.0 ≈ 474 megatons TNT</li>
+          </ul>
+        </div>
+
+        {/* The Magnitude Scale */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">Understanding Moment Magnitude (Mw)</h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            The moment magnitude scale is the modern standard for measuring earthquake size, 
+            directly related to the energy released at the source.
+          </p>
+          <div className="bg-white p-4 rounded border border-slate-200">
+            <h5 className="font-semibold text-slate-700 mb-2">Calculation Steps:</h5>
+            <ol className="text-sm text-slate-600 space-y-1 list-decimal list-inside">
+              <li>Seismic Moment (M₀): M₀ = μ × A × D</li>
+              <li className="ml-6 text-xs text-slate-500">μ = rock rigidity, A = fault area, D = average slip</li>
+              <li>Convert to Magnitude: Mw = (2/3) × log₁₀(M₀) - 10.7</li>
+              <li>Calculate Energy: Using E = (M₀) / (2 × 10⁴)</li>
+            </ol>
+          </div>
+        </div>
+
+        {/* Statistical Measures */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">Statistical Measures Explained</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">Average (Mean)</div>
+              <div className="text-xs text-slate-600">Sum of all magnitudes ÷ count. Useful for overall activity level but sensitive to outliers.</div>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">Median</div>
+              <div className="text-xs text-slate-600">Middle value when sorted. Better represents "typical" earthquake, not skewed by rare large events.</div>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">Maximum</div>
+              <div className="text-xs text-slate-600">Largest observed magnitude. Critical for hazard assessment and structural design.</div>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">Standard Deviation</div>
+              <div className="text-xs text-slate-600">Spread of magnitudes. Higher σ means more variability in earthquake sizes.</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Energy Distribution Matters */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">Real-World Implications</h4>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li>• Building Codes: Design standards based on expected maximum magnitudes</li>
+            <li>• Energy Budget: Total seismic energy helps understand tectonic strain release</li>
+            <li>• Early Warning: Magnitude distribution patterns may reveal stress accumulation</li>
+            <li>• Insurance & Risk: Actuarial models use magnitude statistics for premium calculation</li>
+          </ul>
         </div>
       </div>
     </div>

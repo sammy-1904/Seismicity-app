@@ -173,7 +173,7 @@ const GutenbergRichterGraph = ({ data }) => {
     return (
       <div className="h-96 flex items-center justify-center">
         <div className="text-center text-gray-400">
-          <div className="text-4xl mb-4">📊</div>
+          <div className="text-2xl font-semibold mb-4">Statistical Analysis</div>
           <p className="text-lg">No data available</p>
           <p className="text-sm">Fetch earthquake data to see the Gutenberg-Richter relationship</p>
         </div>
@@ -218,15 +218,98 @@ const GutenbergRichterGraph = ({ data }) => {
         <Scatter ref={chartRef} options={options} data={chartData} />
       </div>
 
-      {/* Explanation */}
-      <div className="bg-purple-500/10 border border-purple-500/30 p-4 rounded-xl">
-        <h4 className="font-bold text-purple-400 mb-2">📚 About the Gutenberg-Richter Law</h4>
-        <p className="text-sm text-gray-300 leading-relaxed">
-          The Gutenberg-Richter law describes the relationship between earthquake magnitude and frequency:
-          <strong className="text-purple-300"> log₁₀(N) = a - b×M</strong>, where N is the cumulative number
-          of earthquakes with magnitude ≥ M. The b-value typically ranges from 0.8-1.2, with lower values
-          indicating more large earthquakes relative to small ones.
-        </p>
+      {/* Educational Section */}
+      <div className="space-y-4">
+        {/* What is Being Displayed */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            What This Graph Shows
+          </h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            This graph displays the Gutenberg-Richter relationship, 
+            one of the most fundamental laws in seismology. It shows how earthquake frequency decreases 
+            exponentially as magnitude increases.
+          </p>
+          <div className="bg-white p-4 rounded border border-slate-200">
+            <p className="text-sm text-slate-600 mb-2"><strong>Blue dots:</strong> Observed data points (magnitude vs. frequency)</p>
+            <p className="text-sm text-slate-600"><strong>Red dashed line:</strong> Best-fit linear regression showing the trend</p>
+          </div>
+        </div>
+
+        {/* The Formula and Calculation */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            The Gutenberg-Richter Formula
+          </h4>
+          <div className="bg-white p-4 rounded border border-slate-200 mb-3">
+            <p className="text-center text-xl font-mono text-slate-700 mb-2">
+              log₁₀(N) = a - b × M
+            </p>
+            <div className="text-sm text-slate-600 space-y-1">
+              <p>• <strong>N</strong> = Cumulative number of earthquakes with magnitude ≥ M</p>
+              <p>• <strong>M</strong> = Magnitude threshold</p>
+              <p>• <strong>a</strong> = Productivity parameter (total seismicity level)</p>
+              <p>• <strong>b</strong> = b-value (relative size distribution)</p>
+            </div>
+          </div>
+          
+          <h5 className="font-semibold text-slate-700 mb-2">How It's Calculated:</h5>
+          <ol className="text-sm text-slate-600 space-y-2 list-decimal list-inside">
+            <li><strong>Count earthquakes</strong> above each magnitude threshold</li>
+            <li><strong>Take log₁₀</strong> of cumulative counts to linearize the relationship</li>
+            <li><strong>Perform linear regression</strong> on (magnitude, log₁₀(count)) data</li>
+            <li><strong>Extract b-value</strong> from the negative slope of the line</li>
+          </ol>
+        </div>
+
+        {/* Interpreting the b-value */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            Understanding the b-value
+          </h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            The b-value indicates the relative proportion of small to large earthquakes:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">b ≈ 1.0</div>
+              <div className="text-xs text-slate-600">Normal tectonic regions. For every magnitude unit increase, there are ~10× fewer earthquakes.</div>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">b &lt; 0.8</div>
+              <div className="text-xs text-slate-600">More large earthquakes relative to small ones. May indicate high stress or mature fault systems.</div>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">b &gt; 1.2</div>
+              <div className="text-xs text-slate-600">More small earthquakes. Common in volcanic regions, geothermal areas, or heterogeneous rock.</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why It Matters */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            Real-World Applications
+          </h4>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span><strong>Seismic Hazard Assessment:</strong> Estimate probability of large earthquakes from small earthquake data</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span><strong>Monitoring Changes:</strong> Temporal variations in b-value may indicate stress changes before major events</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span><strong>Resource Management:</strong> Used in geothermal and mining to monitor induced seismicity</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span><strong>Understanding Tectonics:</strong> Different tectonic settings produce characteristic b-values</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

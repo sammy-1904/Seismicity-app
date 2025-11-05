@@ -123,7 +123,7 @@ const DepthDistributionChart = ({ data }) => {
     return (
       <div className="h-80 flex items-center justify-center">
         <div className="text-center text-gray-400">
-          <div className="text-4xl mb-4">🏔️</div>
+          <div className="text-2xl font-semibold mb-4">Depth Analysis</div>
           <p className="text-lg">No depth data available</p>
           <p className="text-sm">Fetch earthquake data to analyze depth distribution</p>
         </div>
@@ -187,15 +187,146 @@ const DepthDistributionChart = ({ data }) => {
         ))}
       </div>
 
-      {/* Geological Context */}
-      <div className="bg-orange-500/10 border border-orange-500/30 p-4 rounded-xl">
-        <h4 className="font-bold text-orange-400 mb-2">🏔️ Geological Context</h4>
-        <div className="text-sm text-gray-300 space-y-2">
-          <p><strong className="text-red-300">Shallow (0-10km):</strong> Often the most damaging, typically crustal earthquakes</p>
-          <p><strong className="text-orange-300">Crustal (10-35km):</strong> Most common tectonic earthquakes in continental crust</p>
-          <p><strong className="text-yellow-300">Intermediate (35-70km):</strong> Lower crust and upper mantle events</p>
-          <p><strong className="text-green-300">Deep (70-300km):</strong> Subduction zone earthquakes, less surface damage</p>
-          <p><strong className="text-blue-300">Very Deep (300km+):</strong> Deep subduction earthquakes, minimal surface impact</p>
+      {/* Educational Content */}
+      <div className="space-y-4">
+        {/* What is Being Displayed */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            What This Chart Shows
+          </h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            This histogram displays the depth distribution of earthquake hypocenters 
+            (focal points where rupture begins). Depth is measured from Earth's surface downward in kilometers.
+          </p>
+          <div className="bg-white p-4 rounded border border-slate-200">
+            <h5 className="font-semibold text-slate-700 mb-2">How Depth is Determined:</h5>
+            <ol className="text-sm text-slate-600 space-y-1 list-decimal list-inside">
+              <li><strong>Seismic Waves:</strong> P-waves and S-waves arrive at different times at seismograph stations</li>
+              <li><strong>Travel Time:</strong> Wave arrival time differences reveal distance from each station</li>
+              <li><strong>Triangulation:</strong> Multiple stations allow 3D location (latitude, longitude, depth)</li>
+              <li><strong>Uncertainty:</strong> Shallow events typically have ±5-10km depth uncertainty</li>
+            </ol>
+          </div>
+        </div>
+
+        {/* Earth's Internal Structure */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            Earth's Layered Structure
+          </h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            Earthquake depth reveals which part of Earth's interior is rupturing:
+          </p>
+          <div className="space-y-2">
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="flex justify-between items-start mb-1">
+                <span className="font-bold text-slate-700">Crust (0-35km)</span>
+                <span className="text-xs text-slate-500">Continental: 30-70km, Oceanic: 5-10km</span>
+              </div>
+              <p className="text-xs text-slate-600">Brittle fracture zone. Most damaging earthquakes occur here due to proximity to surface.</p>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="flex justify-between items-start mb-1">
+                <span className="font-bold text-slate-700">Upper Mantle (35-70km)</span>
+                <span className="text-xs text-slate-500">Lithosphere base</span>
+              </div>
+              <p className="text-xs text-slate-600">Transition zone where rocks become more plastic. Less common earthquake location.</p>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="flex justify-between items-start mb-1">
+                <span className="font-bold text-slate-700">Deep Upper Mantle (70-300km)</span>
+                <span className="text-xs text-slate-500">Wadati-Benioff Zone</span>
+              </div>
+              <p className="text-xs text-slate-600">Subducting oceanic plates. Cold, dense slab allows brittle fracture at great depth.</p>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="flex justify-between items-start mb-1">
+                <span className="font-bold text-slate-700">Lower Mantle (300-660km)</span>
+                <span className="text-xs text-slate-500">Deepest earthquakes</span>
+              </div>
+              <p className="text-xs text-slate-600">Rare events in deeply subducted slabs. Phase transformations may trigger rupture.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Depth Matters */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            Impact of Earthquake Depth
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="bg-white p-4 rounded border border-slate-200">
+              <h5 className="font-semibold text-slate-700 mb-2">Shallow (0-10km)</h5>
+              <ul className="text-xs text-slate-600 space-y-1">
+                <li>• <strong>Most Destructive:</strong> Energy concentrated near surface</li>
+                <li>• <strong>Strong Shaking:</strong> High-frequency waves cause severe damage</li>
+                <li>• <strong>Surface Rupture:</strong> Visible fault scarps and ground deformation</li>
+                <li>• <strong>Tsunami Risk:</strong> Submarine shallow quakes can displace water</li>
+              </ul>
+            </div>
+            <div className="bg-white p-4 rounded border border-slate-200">
+              <h5 className="font-semibold text-slate-700 mb-2">Deep (70-300km+)</h5>
+              <ul className="text-xs text-slate-600 space-y-1">
+                <li>• <strong>Less Damaging:</strong> Energy dissipates over long distance</li>
+                <li>• <strong>Broader Impact:</strong> Felt over wider area but weaker</li>
+                <li>• <strong>Low Frequency:</strong> Longer-period waves, less structural damage</li>
+                <li>• <strong>No Tsunami:</strong> Too deep to displace ocean water</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Tectonic Context */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            Depth and Tectonic Setting
+          </h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            Depth distribution reveals the type of tectonic environment:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">Mid-Ocean Ridges</div>
+              <div className="text-xs text-slate-600">Shallow (0-15km). Divergent boundaries where plates separate. Oceanic crust formation.</div>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">Continental Faults</div>
+              <div className="text-xs text-slate-600">Shallow-Moderate (0-35km). Strike-slip or normal faults. Crustal earthquakes only.</div>
+            </div>
+            <div className="bg-white p-3 rounded border border-slate-200">
+              <div className="text-slate-700 font-bold mb-1">Subduction Zones</div>
+              <div className="text-xs text-slate-600">All depths (0-700km). Descending oceanic plate. Creates dipping plane of earthquakes.</div>
+            </div>
+          </div>
+        </div>
+
+        {/* The Wadati-Benioff Zone */}
+        <div className="bg-slate-100 border border-slate-300 p-5 rounded-lg">
+          <h4 className="font-bold text-slate-800 mb-3 text-lg">
+            Deep Earthquakes: The Wadati-Benioff Zone
+          </h4>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            Deep earthquakes (greater than 70km) only occur in subduction zones where 
+            cold oceanic lithosphere descends into the hot mantle:
+          </p>
+          <ul className="text-sm text-slate-600 space-y-2">
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span><strong>Temperature Paradox:</strong> Normal mantle is too hot for brittle fracture, but cold slab remains brittle</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span><strong>Phase Changes:</strong> Mineral transformations at depth may trigger instabilities</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-indigo-400 mr-2">•</span>
+              <span><strong className="text-indigo-300">Dehydration:</strong> Water release from metamorphic reactions weakens rocks</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-indigo-400 mr-2">•</span>
+              <span><strong className="text-indigo-300">Deepest Limit:</strong> ~700km maximum depth where rocks become too ductile</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

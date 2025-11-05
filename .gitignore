@@ -137,3 +137,31 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Backup files
+*.bak
+*.backup
+*.swp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+frontend/build/
+build/
+
+# VLab source template (already extracted to frontend/public/)
+Vlab/
+Vlab.zip
+
+# Data files in root (already in frontend/public/)
+/isc-gem-cat.csv
+/isc-gem-cat.kmz
+/isc-gem-suppl.csv
