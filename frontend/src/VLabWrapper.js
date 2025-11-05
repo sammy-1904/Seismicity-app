@@ -154,14 +154,14 @@ function VLabLayout({ children, activeSection, breadcrumbText }) {
         </footer>
       </div>
 
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{__html: `
         body {
           font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         #toggle_nav:hover {
           background-color: #1261A0;
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

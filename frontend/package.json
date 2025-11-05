@@ -40,7 +40,6 @@
     "type": "git",
     "url": "https://github.com/sammy-1904/Seismicity-app.git"
   },
-  "homepage": "https://github.com/sammy-1904/Seismicity-app",
   "browserslist": {
     "production": [
       ">0.2%",
