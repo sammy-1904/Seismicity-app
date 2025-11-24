@@ -1,0 +1,487 @@
+/* styles.css - Custom styles for the seismicity app */
+
+/* Basic reset and layout */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #ecf0f1;
+  overflow-x: hidden;
+}
+
+/* Override some Bootstrap styles for better dark theme integration */
+.content-wrapper {
+  background-color: #ecf0f1;
+  min-height: calc(100vh - 150px);
+}
+
+/* Tab styles */
+.tab-btn {
+  background-color: #374151;
+  color: #9ca3af;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: #4b5563;
+  color: #e5e7eb;
+}
+
+.tab-btn.active {
+  background-color: #1f2937;
+  color: #3b82f6;
+  border-bottom: 3px solid #3b82f6;
+}
+
+/* Map styles */
+.leaflet-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.custom-center-marker {
+  background: transparent;
+  border: none;
+}
+
+/* Quiz styles */
+.quiz-container {
+  max-width: 800px;
+}
+
+.question-block {
+  border-left: 4px solid #3b82f6;
+}
+
+/* Accordion styles */
+.panel-group {
+  margin-bottom: 20px;
+}
+
+.panel-default {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.panel-heading {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+  border-radius: 3px 3px 0 0;
+}
+
+.panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: inherit;
+}
+
+.panel-title a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 600;
+  display: block;
+  padding: 10px 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.panel-title a:hover {
+  color: #3b82f6;
+  text-decoration: none;
+  background-color: #e9ecef;
+}
+
+.panel-title a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Collapsed/Expanded states */
+.panel-collapse {
+  overflow: hidden;
+}
+
+.panel-collapse.collapse {
+  display: none;
+  height: 0;
+}
+
+.panel-collapse.collapse.in {
+  display: block;
+  height: auto;
+}
+
+.panel-collapse.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+.panel-body {
+  padding: 15px;
+  background-color: #fff;
+  border-top: 0;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.panel-body ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+  display: block !important;
+}
+
+.panel-body li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  display: list-item !important;
+  visibility: visible !important;
+  color: #333;
+}
+
+/* Sidebar styles */
+.sidebar-menu li.treeview {
+  transition: background-color 0.3s ease;
+}
+
+/* Top navbar - fixed at very top */
+.navbar-default {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100%;
+  margin-bottom: 0;
+  z-index: 1040 !important;
+  background-color: #fff !important;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Wrapper needs proper positioning */
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 50px !important;
+}
+
+.main-sidebar {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  height: calc(100% - 100px);
+  width: 230px;
+  z-index: 810;
+  overflow-y: auto;
+}
+
+.content-wrapper {
+  margin-left: 230px;
+  margin-top: 50px;
+  padding: 20px;
+  min-height: calc(100vh - 100px);
+  background-color: #ecf0f1;
+}
+
+/* Main header */
+.main-header {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  height: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-wrapper {
+    margin-left: 0;
+    margin-top: 50px;
+  }
+  
+  .main-sidebar {
+    transform: translateX(-230px);
+    transition: transform 0.3s ease;
+    top: 100px;
+  }
+  
+  body:not(.sidebar-collapse) .main-sidebar {
+    transform: translateX(0);
+  }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fa-spin {
+  animation: spin 2s linear infinite;
+}
+
+/* Chart container */
+canvas {
+  max-height: 500px;
+}
+
+/* Alert styles */
+.alert {
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+/* Box styles */
+.box {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: white;
+}
+
+.box-body {
+  padding: 20px;
+}
+
+.box-default {
+  border-top: 3px solid #3b82f6;
+}
+
+/* List group styles */
+.list-group-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.list-group-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* Well styles */
+.well {
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+.main-footer {
+  background-color: #fff;
+  padding: 15px;
+  color: #444;
+  border-top: 1px solid #d2d6de;
+  margin-left: 230px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .main-footer {
+    margin-left: 0;
+  }
+}
+
+/* Content sections */
+.content-section {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sidebar collapse */
+.sidebar-collapse .content-wrapper,
+.sidebar-collapse .main-footer {
+  margin-left: 0 !important;
+}
+
+.sidebar-collapse .main-sidebar {
+  transform: translateX(-230px);
+}
+
+/* Bootstrap overrides for AdminLTE compatibility */
+.navbar-default {
+  background-color: #fff;
+  border-color: #d2d6de;
+}
+
+.navbar-brand {
+  color: #333 !important;
+}
+
+/* Grid improvements */
+@media (min-width: 768px) {
+  .grid {
+    display: grid;
+  }
+}
+
+/* Ensure proper spacing */
+h1, h2, h3, h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2em;
+  color: #2c3e50;
+}
+
+h2 {
+  font-size: 1.75em;
+  color: #34495e;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+h4 {
+  font-size: 1.25em;
+  color: #34495e;
+}
+
+/* Link styles */
+a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Button improvements */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Print styles */
+@media print {
+  .main-sidebar,
+  .main-header,
+  .navbar,
+  .breadcrumb,
+  button {
+    display: none !important;
+  }
+  
+  .content-wrapper {
+    margin: 0 !important;
+  }
+}
+
+/* CRITICAL LAYOUT FIXES - Override everything */
+body.hold-transition.skin-blue.sidebar-mini {
+  padding-top: 0 !important;
+}
+
+/* Show the top navbar at the very top */
+div.navbar.navbar-default {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  min-height: 50px !important;
+  height: 50px !important;
+  display: block !important;
+}
+
+div.wrapper {
+  margin-top: 50px !important;
+  padding-top: 0 !important;
+}
+
+/* Hide the main header - we only need navbar */
+.main-header {
+  display: none !important;
+}
+
+.main-sidebar {
+  position: fixed !important;
+  top: 50px !important;
+  height: calc(100% - 50px) !important;
+}
+
+.content-wrapper {
+  padding-top: 20px !important;
+  margin-top: 0 !important;
+  margin-left: 230px !important;
+}
+
+/* Remove any navbar margins/padding that create gaps */
+.navbar {
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+}
+
+.navbar-header {
+  margin-bottom: 0 !important;
+}
+
+.navbar > .container {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}

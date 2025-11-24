@@ -1,52 +1,240 @@
-# Seismicity Analysis Platform - Virtual Lab
+# Seismicity Analysis Virtual Lab# Seismicity Analysis Virtual Lab# Seismicity Analysis Virtual Lab# Seismicity Analysis Platform - Virtual Lab
 
-A comprehensive educational virtual laboratory for analyzing global earthquake data from the ISC-GEM Global Instrumental Earthquake Catalogue. Built with the IIT Roorkee Virtual Labs template framework.
+
+
+Interactive educational platform for earthquake data analysis using the ISC-GEM catalogue (1904-2021).
+
+
+
+## Quick StartInteractive educational platform for earthquake data analysis using the ISC-GEM catalogue (1904-2021).
+
+
+
+```bash
+
+cd frontend
+
+python -m http.server 8000## Quick StartInteractive educational platform for earthquake data analysis using ISC-GEM catalogue (1904-2021).A comprehensive educational virtual laboratory for analyzing global earthquake data from the ISC-GEM Global Instrumental Earthquake Catalogue. Built with the IIT Roorkee Virtual Labs template framework.
+
+```
+
+
+
+Open: `http://localhost:8000`
+
+```bash
+
+**Or use the batch file:**
+
+```bashcd frontend
+
+cd frontend
+
+start-server.batpython -m http.server 8000## Quick Start## Features
+
+```
+
+```
+
+## Educational Flow
+
+
+
+1. **Aim** - Learning objectives
+
+2. **Theory** - Seismology concepts and Gutenberg-Richter lawOpen: `http://localhost:8000`
+
+3. **Pre-Test** - Knowledge assessment (5 questions)
+
+4. **Procedure** - Step-by-step guide```bash### Educational Components
+
+5. **Simulation** - Interactive earthquake analysis
+
+6. **Post-Test** - Application-based assessment (5 questions)**Or use the batch file:**
+
+7. **References** - Citations and resources
+
+```bashcd frontend- **Aim**: Learning objectives and outcomes for seismology education
+
+## File Structure
+
+cd frontend
+
+```
+
+frontend/start-server.batpython -m http.server 8000- **Theory**: Comprehensive seismological concepts including Gutenberg-Richter law, magnitude scales, and depth classifications
+
+├── index.html          # Single-page app (all sections)
+
+├── app.js             # Core logic, map, charts```
+
+├── components.js      # UI component generators
+
+├── navigation.js      # Section routing```- **Pre-Test**: Assessment of foundational seismology knowledge
+
+├── utils.js           # CSV parser, G-R calculations
+
+├── styles.css         # Custom CSS## Educational Flow
+
+├── isc-gem-cat.csv    # Main earthquake catalogue
+
+└── public/            # Static assets (Bootstrap, plugins)- **Procedure**: Step-by-step guide for using the simulation platform
+
+```
+
+1. **Aim** - Learning objectives
 
 ## Features
 
-### Educational Components
-- **Aim**: Learning objectives and outcomes for seismology education
-- **Theory**: Comprehensive seismological concepts including Gutenberg-Richter law, magnitude scales, and depth classifications
-- **Pre-Test**: Assessment of foundational seismology knowledge
-- **Procedure**: Step-by-step guide for using the simulation platform
-- **Simulation**: Interactive analysis platform (see below)
-- **Post-Test**: Application-based assessment questions
-- **References**: Citations and resources for further study
+2. **Theory** - Seismology concepts and Gutenberg-Richter lawOpen: `http://localhost:8000`- **Simulation**: Interactive analysis platform (see below)
 
-### Interactive Simulation Platform
-- **Interactive Map Visualization**: Display earthquakes on an interactive map with magnitude-based markers
-- **Gutenberg-Richter Analysis**: Statistical relationship between magnitude and frequency
-- **Depth Distribution Charts**: Analyze earthquake depths and geological context
-- **Temporal Analysis**: Time-based patterns and seismic event distribution
-- **Magnitude Distribution**: Frequency analysis of earthquake magnitudes
-- **Advanced Filtering**: Filter by location, radius, magnitude, and date range
+- Interactive map with Leaflet and earthquake markers
 
-## Data Source
+- Gutenberg-Richter plot with statistical analysis3. **Pre-Test** - Knowledge assessment (5 questions)
 
-This application uses the **ISC-GEM Global Instrumental Earthquake Catalogue** (Version 12.0):
-- **Period Covered**: 1904-2021
-- **Citation**: International Seismological Centre (2025), ISC-GEM Earthquake Catalogue, https://doi.org/10.31905/D808B825
-- **Data Files**: 
-  - `isc-gem-cat.csv` - Main earthquake catalogue
+- Depth distribution with geological context
+
+- Temporal analysis and time-series visualization4. **Procedure** - Step-by-step guide- **Post-Test**: Application-based assessment questions
+
+- Magnitude distribution and frequency analysis
+
+- Advanced filtering by location, radius, magnitude, date5. **Simulation** - Interactive earthquake analysis
+
+
+
+## Tech Stack6. **Post-Test** - Application-based assessment (5 questions)Or use the batch file:- **References**: Citations and resources for further study
+
+
+
+- Vanilla JavaScript (ES6+)7. **References** - Citations and resources
+
+- Leaflet 1.9.4 (maps)
+
+- Chart.js 4.4.0 (charts)```bash
+
+- Bootstrap 3 (UI)
+
+- jQuery 2.0.3 (DOM manipulation)## File Structure
+
+- All via CDN - no npm required
+
+cd frontend### Interactive Simulation Platform
+
+## Data Files
+
+```
+
+- `isc-gem-cat.csv` - Main earthquake catalogue (1904-2021)
+
+- `isc-gem-suppl.csv` - Supplementary datafrontend/start-server.bat- **Interactive Map Visualization**: Display earthquakes on an interactive map with magnitude-based markers
+
+
+
+## Browser Requirements├── index.html          # Single-page app (all sections)
+
+
+
+Modern browser with ES6+ support (Chrome, Firefox, Edge, Safari).├── app.js             # Core logic, map initialization, charts```- **Gutenberg-Richter Analysis**: Statistical relationship between magnitude and frequency
+
+
+├── components.js      # UI component generators
+
+├── navigation.js      # Section routing and navigation- **Depth Distribution Charts**: Analyze earthquake depths and geological context
+
+├── utils.js           # CSV parser, G-R calculations
+
+├── styles.css         # Custom CSS## Structure- **Temporal Analysis**: Time-based patterns and seismic event distribution
+
+├── isc-gem-cat.csv    # Main earthquake catalogue
+
+└── public/            # Static assets (Bootstrap, plugins)- **Magnitude Distribution**: Frequency analysis of earthquake magnitudes
+
+```
+
+```- **Advanced Filtering**: Filter by location, radius, magnitude, and date range
+
+## Features
+
+frontend/
+
+- **Interactive Map**: Leaflet with earthquake markers and search radius
+
+- **Gutenberg-Richter Plot**: Statistical analysis with a-value and b-value├── index.html       # Single-page app## Data Source
+
+- **Depth Distribution**: Histogram with geological context
+
+- **Temporal Analysis**: Time-series visualization├── app.js          # Main logic
+
+- **Magnitude Distribution**: Frequency analysis
+
+- **Advanced Filtering**: Location, radius, magnitude, date range├── components.js   # UI componentsThis application uses the **ISC-GEM Global Instrumental Earthquake Catalogue** (Version 12.0):
+
+
+
+## Tech Stack├── navigation.js   # Routing- **Period Covered**: 1904-2021
+
+
+
+- Vanilla JavaScript (ES6+)├── utils.js        # CSV parser, calculations- **Citation**: International Seismological Centre (2025), ISC-GEM Earthquake Catalogue, https://doi.org/10.31905/D808B825
+
+- Leaflet 1.9.4 (maps)
+
+- Chart.js 4.4.0 (charts)└── styles.css      # Custom styles- **Data Files**: 
+
+- Bootstrap 3 (UI)
+
+- jQuery 2.0.3 (DOM manipulation)```  - `isc-gem-cat.csv` - Main earthquake catalogue
+
+- All via CDN - no npm required
+
   - `isc-gem-suppl.csv` - Supplementary catalogue
 
-## Installation
+## Data Files
 
-1. Clone the repository:
-```bash
-git clone https://github.com/sammy-1904/Seismicity-app.git
+## Features
+
+- `isc-gem-cat.csv` - Main earthquake catalogue (1904-2021)
+
+- `isc-gem-suppl.csv` - Supplementary data## Installation
+
+
+
+## Browser Requirements- **Educational Flow**: Aim → Theory → Pre-Test → Procedure → Simulation → Post-Test → References
+
+
+
+Modern browser with ES6+ support (Chrome, Firefox, Edge, Safari).- **Interactive Map**: Leaflet with earthquake markers1. Clone the repository:
+
+
+- **Charts**: Gutenberg-Richter, depth, temporal, magnitude distributions```bash
+
+- **No Dependencies**: All libraries via CDNgit clone https://github.com/sammy-1904/Seismicity-app.git
+
 cd Seismicity-app
-```
 
-2. Navigate to the frontend directory:
-```bash
+## Data Files```
+
+
+
+- `isc-gem-cat.csv` - Main earthquake catalogue2. Navigate to the frontend directory:
+
+- `isc-gem-suppl.csv` - Supplementary data```bash
+
 cd frontend
-```
 
-3. Install dependencies:
-```bash
-npm install
-```
+## Tech```
+
+
+
+- Vanilla JavaScript (ES6+)3. Install dependencies:
+
+- Leaflet 1.9.4```bash
+
+- Chart.js 4.4.0npm install
+
+- Bootstrap 3```
+
+- No build process required
 
 4. Start the development server:
 ```bash

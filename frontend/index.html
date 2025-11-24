@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Virtual Seismology Lab - Interactive Earthquake Analysis</title>
+    <meta name="description" content="Interactive virtual laboratory for analyzing global seismicity patterns using the ISC-GEM Global Earthquake Catalogue (1904-2021)" />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <!-- Top Navigation Bar -->
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse" id="toggle_nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#aim">
+                    <span style="font-size: 1.5em; font-weight: bold;">Virtual Seismology Lab</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-ex-collapse"></div>
+        </div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="wrapper">
+        <!-- Header -->
+        <header class="main-header">
+            <a href="#aim" class="logo" style="background-color: #009dff; border-right: solid; border-right-color: #1261A0;">
+                <p align="center" style="font-size: 1em;"><b>Seismicity Analysis Lab</b></p>
+            </a>
+            
+            <nav class="navbar navbar-static-top" style="background-color: #009dff;">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <section class="content-header">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#aim"><i class="fa fa-dashboard"></i> Seismicity Lab</a>
+                        </li>
+                        <li>
+                            <a href="#">Earthquake Analysis</a>
+                        </li>
+                        <li class="active" id="breadcrumb-text">Aim</li>
+                    </ol>
+                </section>
+            </nav>
+        </header>
+
+        <!-- Left Sidebar -->
+        <aside class="main-sidebar" style="background-color: #1261A0;">
+            <section class="sidebar">
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group"></div>
+                </form>
+                
+                <ul class="sidebar-menu" style="background-color: #1261A0;">
+                    <li class="treeview" id="menu-aim">
+                        <a href="#aim" style="color: white;">
+                            <i class="fa fa-files-o" style="color: white;"></i>
+                            <span>Aim</span>
+                        </a>
+                    </li>
+                    <li class="treeview" id="menu-theory">
+                        <a href="#theory" style="color: white;">
+                            <i class="fa fa-files-o" style="color: white;"></i>
+                            <span>Theory</span>
+                        </a>
+                    </li>
+                    <li class="treeview" id="menu-pretest">
+                        <a href="#pretest" style="color: white;">
+                            <i class="fa fa-files-o" style="color: white;"></i>
+                            <span>Pre Test</span>
+                        </a>
+                    </li>
+                    <li class="treeview" id="menu-procedure">
+                        <a href="#procedure" style="color: white;">
+                            <i class="fa fa-files-o" style="color: white;"></i>
+                            <span>Procedure</span>
+                        </a>
+                    </li>
+                    <li class="treeview" id="menu-simulation">
+                        <a href="#simulation" style="color: white;">
+                            <i class="fa fa-laptop" style="color: white;"></i>
+                            <span>Simulation</span>
+                        </a>
+                    </li>
+                    <li class="treeview" id="menu-posttest">
+                        <a href="#posttest" style="color: white;">
+                            <i class="fa fa-files-o" style="color: white;"></i>
+                            <span>Post Test</span>
+                        </a>
+                    </li>
+                    <li class="treeview" id="menu-references">
+                        <a href="#references" style="color: white;">
+                            <i class="fa fa-files-o" style="color: white;"></i>
+                            <span>References</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- AIM Section -->
+            <section id="aim" class="content-section">
+                <div class="content-header">
+                    <h1>Aim</h1>
+                </div>
+                <div class="content">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <h3>Objectives of the Virtual Seismology Lab</h3>
+                            <p>This virtual laboratory is designed to provide hands-on experience in analyzing global seismicity patterns using real earthquake data from the ISC-GEM Global Earthquake Catalogue.</p>
+                            
+                            <h4>Learning Objectives:</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>Understand Earthquake Distribution:</strong> Visualize the spatial and temporal patterns of global seismicity
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Apply the Gutenberg-Richter Law:</strong> Learn about the frequency-magnitude relationship of earthquakes
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Analyze Depth Distributions:</strong> Study how earthquakes are distributed at different depths
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Temporal Analysis:</strong> Identify trends and patterns in earthquake occurrence over time
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Data-Driven Learning:</strong> Develop skills in querying, filtering, and analyzing seismic datasets
+                                </li>
+                            </ul>
+
+                            <div class="alert alert-info" style="margin-top: 20px;">
+                                <i class="fa fa-info-circle"></i>
+                                <strong>Dataset:</strong> ISC-GEM Global Earthquake Catalogue (1904-2021) containing high-quality earthquake data with moment magnitudes ≥ 5.5
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- THEORY Section -->
+            <section id="theory" class="content-section" style="display: none;">
+                <div class="content-header">
+                    <h1>Theory</h1>
+                </div>
+                <div class="content">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <h3>Seismicity Analysis: Theoretical Background</h3>
+                            
+                            <h4>1. The Gutenberg-Richter Law</h4>
+                            <p>The Gutenberg-Richter relationship is a fundamental law in seismology that describes the frequency-magnitude distribution of earthquakes:</p>
+                            <div class="well">
+                                <code>log₁₀(N) = a - bM</code>
+                            </div>
+                            <p>Where:</p>
+                            <ul>
+                                <li><strong>N</strong> = Cumulative number of earthquakes with magnitude ≥ M</li>
+                                <li><strong>M</strong> = Magnitude</li>
+                                <li><strong>a</strong> = Activity parameter (total seismicity)</li>
+                                <li><strong>b</strong> = Slope parameter (typically ~1.0, indicates relative frequency of small vs large events)</li>
+                            </ul>
+
+                            <h4>2. Earthquake Depth Distribution</h4>
+                            <p>Earthquakes occur at various depths, which provide insights into tectonic processes:</p>
+                            <ul>
+                                <li><strong>Shallow (0-70 km):</strong> Most common, occur in the crust</li>
+                                <li><strong>Intermediate (70-300 km):</strong> Occur in subduction zones</li>
+                                <li><strong>Deep (300-700 km):</strong> Rare, deep subduction zone events</li>
+                            </ul>
+
+                            <h4>3. Spatial Distribution</h4>
+                            <p>Earthquakes are not randomly distributed globally. They primarily occur along:</p>
+                            <ul>
+                                <li>Plate boundaries (convergent, divergent, transform)</li>
+                                <li>Subduction zones</li>
+                                <li>Mid-ocean ridges</li>
+                                <li>Continental rift zones</li>
+                            </ul>
+
+                            <h4>4. Temporal Patterns</h4>
+                            <p>Analyzing earthquake occurrence over time helps identify:</p>
+                            <ul>
+                                <li>Seismic cycles and recurrence intervals</li>
+                                <li>Potential changes in seismicity rates</li>
+                                <li>Aftershock sequences</li>
+                                <li>Long-term trends in seismic activity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRETEST Section -->
+            <section id="pretest" class="content-section" style="display: none;">
+                <div class="content-header">
+                    <h1>Pre Test</h1>
+                </div>
+                <div class="content">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <div id="pretest-quiz"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROCEDURE Section -->
+            <section id="procedure" class="content-section" style="display: none;">
+                <div class="content-header">
+                    <h1>Procedure</h1>
+                </div>
+                <div class="content">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <h3>Step-by-Step Guide to Using the Seismicity Analysis Tool</h3>
+                            
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#step1">
+                                                Step 1: Set Geographic Parameters
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="step1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>Navigate to the <strong>Simulation</strong> tab</li>
+                                                <li>Use the interactive map to select your region of interest</li>
+                                                <li>Click on the map or drag the marker to set the center point</li>
+                                                <li>Adjust the search radius (in kilometers)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#step2">
+                                                Step 2: Set Magnitude and Time Filters
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="step2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>Set the minimum magnitude threshold</li>
+                                                <li>Select the start date (default: 1904-01-01)</li>
+                                                <li>Select the end date (default: 2021-12-31)</li>
+                                                <li>Note: ISC-GEM catalogue covers 1904-2021</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#step3">
+                                                Step 3: Execute Search
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="step3" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>Click the <strong>Search Earthquakes</strong> button</li>
+                                                <li>The system will filter the catalogue based on your criteria</li>
+                                                <li>Results will be displayed on the map and in various visualizations</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#step4">
+                                                Step 4: Analyze Results
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="step4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li><strong>Map View:</strong> See spatial distribution of earthquakes</li>
+                                                <li><strong>G-R Plot:</strong> Analyze frequency-magnitude relationship</li>
+                                                <li><strong>Depth Distribution:</strong> View depth histogram</li>
+                                                <li><strong>Temporal Analysis:</strong> Study time-series patterns</li>
+                                                <li><strong>Magnitude Distribution:</strong> Examine magnitude histogram</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#step5">
+                                                Step 5: Interpret and Export
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="step5" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>Examine the b-value from the Gutenberg-Richter plot</li>
+                                                <li>Identify depth patterns (shallow vs deep seismicity)</li>
+                                                <li>Look for temporal clusters or trends</li>
+                                                <li>Switch between different map types for better visualization</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SIMULATION Section -->
+            <section id="simulation" class="content-section" style="display: none;">
+                <div class="content-header">
+                    <h1 align="center">Interactive Seismicity Analysis Platform</h1>
+                </div>
+                <div class="content">
+                    <div id="app-container"></div>
+                </div>
+            </section>
+
+            <!-- POSTTEST Section -->
+            <section id="posttest" class="content-section" style="display: none;">
+                <div class="content-header">
+                    <h1>Post Test</h1>
+                </div>
+                <div class="content">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <div id="posttest-quiz"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REFERENCES Section -->
+            <section id="references" class="content-section" style="display: none;">
+                <div class="content-header">
+                    <h1>References</h1>
+                </div>
+                <div class="content">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <h3>Sources and Further Reading</h3>
+                            
+                            <h4>Primary Data Source</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>ISC-GEM Global Earthquake Catalogue</strong><br>
+                                    Storchak, D.A., Di Giacomo, D., Bondár, I. et al. (2013)<br>
+                                    <em>Physics of the Earth and Planetary Interiors</em>, 239, 48-63<br>
+                                    <a href="http://www.isc.ac.uk/iscgem/" target="_blank">http://www.isc.ac.uk/iscgem/</a>
+                                </li>
+                            </ul>
+
+                            <h4>Fundamental Papers</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Gutenberg, B., & Richter, C. F. (1944). Frequency of earthquakes in California. <em>Bulletin of the Seismological Society of America</em>, 34(4), 185-188.
+                                </li>
+                                <li class="list-group-item">
+                                    Aki, K. (1965). Maximum likelihood estimate of b in the formula log N= a-bM and its confidence limits. <em>Bulletin of the Earthquake Research Institute</em>, 43, 237-239.
+                                </li>
+                            </ul>
+
+                            <h4>Additional Resources</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    USGS Earthquake Hazards Program: <a href="https://earthquake.usgs.gov/" target="_blank">https://earthquake.usgs.gov/</a>
+                                </li>
+                                <li class="list-group-item">
+                                    International Seismological Centre: <a href="http://www.isc.ac.uk/" target="_blank">http://www.isc.ac.uk/</a>
+                                </li>
+                                <li class="list-group-item">
+                                    IRIS Earthquake Science: <a href="https://www.iris.edu/hq/" target="_blank">https://www.iris.edu/hq/</a>
+                                </li>
+                            </ul>
+
+                            <h4>Educational Materials</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Stein, S., & Wysession, M. (2009). <em>An Introduction to Seismology, Earthquakes, and Earth Structure</em>. John Wiley & Sons.
+                                </li>
+                                <li class="list-group-item">
+                                    Lay, T., & Wallace, T. C. (1995). <em>Modern Global Seismology</em>. Academic Press.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0.0
+            </div>
+            <strong>Copyright &copy; 2024 Virtual Seismology Lab.</strong> All rights reserved.
+        </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Utilities -->
+    <script src="utils.js"></script>
+    
+    <!-- Components -->
+    <script src="components.js"></script>
+    
+    <!-- Main App -->
+    <script src="app.js"></script>
+    
+    <!-- Navigation Handler -->
+    <script src="navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Virtual Seismology Lab - Static VLab</title>
+    <meta name="description" content="Static, no-build version of the Virtual Seismology Lab (no React / no Node)." />
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (CDN) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}</style>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <style>
+      /* Simple page styles */
+      #map { height: 450px; }
+      .spinner{border-top-color:#3490dc; -webkit-animation:spin 1s linear infinite; animation:spin 1s linear infinite}
+      @-webkit-keyframes spin{to{-webkit-transform:rotate(360deg)}}
+      @keyframes spin{to{transform:rotate(360deg)}}
+    </style>
+  </head>
+  <body class="bg-gray-50 text-slate-900 p-6">
+    <div class="max-w-6xl mx-auto">
+      <header class="mb-6">
+        <h1 class="text-2xl font-semibold">Virtual Seismology Lab — Static VLab</h1>
+        <p class="text-sm text-slate-600">No build required. Works with servers that only support static JS and CDN assets.</p>
+      </header>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <aside class="lg:col-span-1 bg-white p-4 rounded shadow">
+          <h2 class="font-medium mb-2">Search Parameters</h2>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-sm text-slate-700">Latitude</label>
+              <input id="latitude" class="mt-1 w-full border rounded px-3 py-2" type="number" step="0.01" value="36.17" />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-700">Longitude</label>
+              <input id="longitude" class="mt-1 w-full border rounded px-3 py-2" type="number" step="0.01" value="-115.14" />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-700">Radius (km)</label>
+              <input id="radius" class="mt-1 w-full border rounded px-3 py-2" type="number" value="500" />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-700">Min Magnitude</label>
+              <input id="minmag" class="mt-1 w-full border rounded px-3 py-2" type="number" step="0.1" value="5.0" />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-700">Start Date</label>
+              <input id="startdate" class="mt-1 w-full border rounded px-3 py-2" type="date" value="1904-01-01" />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-700">End Date</label>
+              <input id="enddate" class="mt-1 w-full border rounded px-3 py-2" type="date" value="2021-12-31" />
+            </div>
+            <div>
+              <button id="searchBtn" class="w-full bg-slate-800 text-white py-2 rounded">Search Earthquakes</button>
+            </div>
+            <div id="summary" class="text-center text-sm text-slate-700"></div>
+          </div>
+        </aside>
+
+        <main class="lg:col-span-2 space-y-6">
+          <section class="bg-white p-4 rounded shadow">
+            <h2 class="font-medium mb-2">Interactive Map</h2>
+            <div id="map"></div>
+          </section>
+
+          <section class="bg-white p-4 rounded shadow grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h3 class="font-medium mb-2">Gutenberg–Richter (log10 cumulative)</h3>
+              <canvas id="grChart" height="220"></canvas>
+            </div>
+            <div>
+              <h3 class="font-medium mb-2">Magnitude Distribution</h3>
+              <canvas id="magChart" height="220"></canvas>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="mt-6 text-xs text-slate-500">This static page expects the ISC-GEM CSV to be available at <code>/isc-gem-cat.csv</code> (same path used by the original app).</footer>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+    <!-- Utilities and main app -->
+    <script src="./utils.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
