@@ -1,439 +1,252 @@
-# Frontend - Seismicity Analysis App# Frontend - Seismicity Analysis App# Frontend - Seismicity Analysis App# Seismicity Analysis Web Application
+# Seismicity Analysis Web Application
 
+Pure HTML/CSS/JavaScript earthquake analysis application for analyzing global seismicity patterns using the ISC-GEM Global Earthquake Catalogue (1904-2021).
 
+## ⚠️ IMPORTANT: Avoiding CORS Errors
 
-Pure HTML/CSS/JavaScript earthquake analysis application.
+**DO NOT open `index.html` by double-clicking it!** This will cause CORS errors that prevent loading CSV data.
 
+**ALWAYS run the app through a local HTTP server** as described below.
 
+## 🚀 Quick Start
 
-## Run LocallyPure HTML/CSS/JavaScript earthquake analysis application. No frameworks, no build tools.
+### Windows Users
 
+1. Double-click `start-server.bat`
+2. Open your browser to: **http://localhost:8000**
 
+### macOS/Linux Users
 
-**Option 1: Python**
+1. Open Terminal in this folder
+2. Run: `./start-server.sh` (or `chmod +x start-server.sh` first if needed)
+3. Open your browser to: **http://localhost:8000**
+
+## 📖 Detailed Setup Instructions
+
+### Option 1: Using Python (Recommended - Works on all platforms)
+
+**macOS/Linux:**
+```bash
+cd /path/to/seismicity-app/frontend
+python3 -m http.server 8000
+```
+
+**Windows:**
+```cmd
+cd C:\path\to\seismicity-app\frontend
+python -m http.server 8000
+```
+
+Then open: **http://localhost:8000**
+
+### Option 2: Using the Provided Scripts
+
+**Windows:**
+- Double-click `start-server.bat`
+
+**macOS/Linux:**
+```bash
+chmod +x start-server.sh  # First time only
+./start-server.sh
+```
+
+### Option 3: Using PHP
 
 ```bash
-
-python -m http.server 8000## Run LocallyPure HTML/CSS/JavaScript earthquake analysis application.## Overview
-
+php -S localhost:8000
 ```
 
-
-
-**Option 2: Batch File**
-
-```bash**Option 1: Python**This is a vanilla HTML/CSS/JavaScript web application for analyzing global seismicity patterns using the ISC-GEM Global Earthquake Catalogue (1904-2021).
-
-start-server.bat
-
-``````bash
-
-
-
-**Option 3: Node.js**python -m http.server 8000## Run Locally
+### Option 4: Using Node.js http-server
 
 ```bash
-
-npx http-server -p 8000```
-
+npm install -g http-server  # First time only
+http-server -p 8000
 ```
 
-## Tech Stack
+### Option 5: Using VS Code Live Server
 
-Then open: `http://localhost:8000`
-
-**Option 2: Batch File**
-
-## Files
-
-```bash**Option 1: Python**- **HTML5** - Structure and content
-
-| File | Description |
-
-|------|-------------|start-server.bat
-
-| `index.html` | Single-page app with all sections |
-
-| `app.js` | Core logic, map, charts, data loading |``````bash- **CSS3** - Styling (with Tailwind CSS via CDN)
-
-| `components.js` | UI component generators |
-
-| `navigation.js` | Hash-based routing |
-
-| `utils.js` | CSV parser, Gutenberg-Richter calculations |
-
-| `styles.css` | Custom styling |**Option 3: Node.js**python -m http.server 8000- **Vanilla JavaScript** - Application logic
-
-| `isc-gem-cat.csv` | Earthquake data (1904-2021) |
-
-| `public/` | Bootstrap, plugins, images |```bash
-
-
-
-## Dependencies (All via CDN)npx http-server -p 8000```- **Leaflet** (via CDN) - Interactive maps
-
-
-
-- Tailwind CSS 3.x```
-
-- Bootstrap 3.3.4
-
-- Leaflet 1.9.4- **Chart.js** (via CDN) - Data visualization
-
-- Chart.js 4.4.0
-
-- jQuery 2.0.3Then open: `http://localhost:8000`
-
-- Font Awesome 4.5.0
-
-**Option 2: Batch File**- **Bootstrap 3** (via CDN) - UI components
-
-**No npm install required!** Everything loads from CDN.
-
-## Files
-
-## Sections
-
-```bash- **jQuery** (via CDN) - DOM manipulation
-
-1. **Aim** - Learning objectives
-
-2. **Theory** - Seismology concepts| File | Description |
-
-3. **Pre-Test** - Quiz (5 questions)
-
-4. **Procedure** - Step-by-step guide|------|-------------|start-server.bat
-
-5. **Simulation** - Interactive analysis
-
-6. **Post-Test** - Quiz (5 questions)| `index.html` | Single-page app with all sections |
-
-7. **References** - Citations
-
-| `app.js` | Core logic, map, charts, data loading |```## Project Structure
-
-## Usage
-
-| `components.js` | UI component generators |
-
-1. Click sections in left sidebar to navigate
-
-2. Go to **Simulation** section| `navigation.js` | Hash-based routing, sidebar navigation |```
-
-3. Set search parameters (lat/lon, radius, magnitude, dates)
-
-4. Click **Search Earthquakes**| `utils.js` | CSV parser, Gutenberg-Richter calculations |
-
-5. View results in map and charts
-
-| `styles.css` | Custom styling |**Option 3: Node.js**frontend/
-
-## Key Functions
-
-| `isc-gem-cat.csv` | Earthquake data (1904-2021) |
-
-**utils.js**
-
-- `parseISCGEMCSV()` - Parse CSV data| `public/` | Static assets (Bootstrap, plugins, images) |```bash├── index.html          # Main HTML file (all pages in one file)
-
-- `filterEarthquakes()` - Filter by criteria
-
-- `calculateGRValues()` - Gutenberg-Richter analysis
-
-- `calculateLinearRegression()` - Trend lines
-
-## Dependencies (All via CDN)npx http-server -p 8000├── app.js             # Main application logic
-
-**app.js**
-
-- `initializeApp()` - Initialize app
-
-- `loadCSVData()` - Load earthquake data
-
-- `initializeMap()` - Setup Leaflet map- **Tailwind CSS 3.x** - Utility styling```├── components.js      # UI component generators
-
-- `handleSearch()` - Process search
-
-- `updateMap()` - Update markers- **Bootstrap 3.3.4** - UI framework
-
-- `updateCharts()` - Update visualizations
-
-- **Leaflet 1.9.4** - Interactive maps├── navigation.js      # Navigation and routing logic
-
-**navigation.js**
-
-- Hash-based routing for sections- **Chart.js 4.4.0** - Data visualization
-
-- Sidebar active state management
-
-- **jQuery 2.0.3** - DOM manipulationThen open: `http://localhost:8000`├── utils.js           # Utility functions (CSV parser, GR calculator)
-
-## Browser Requirements
-
-- **Font Awesome 4.5.0** - Icons
-
-Modern browser with ES6+ support (Chrome, Firefox, Edge, Safari).
-
-├── styles.css         # Custom CSS styles
-
-## Data Files
-
-**No npm install required!** Everything loads from CDN.
-
-- `isc-gem-cat.csv` - Main catalogue (40,000+ events)
-
-- `isc-gem-suppl.csv` - Supplementary data (optional)## Files├── isc-gem-cat.csv    # Earthquake data (ISC-GEM catalogue)
-
-
-## Sections
-
-└── public/            # Static assets (Bootstrap, plugins, images)
-
-1. **Aim** - Learning objectives
-
-2. **Theory** - Seismology concepts- `index.html` - Single page containing all sections```
-
-3. **Pre-Test** - Quiz (5 questions)
-
-4. **Procedure** - Step-by-step guide- `app.js` - Core application logic, map, charts
-
-5. **Simulation** - Interactive analysis with:
-
-   - Interactive map- `components.js` - UI component generators## Features
-
-   - Gutenberg-Richter plot
-
-   - Depth distribution- `navigation.js` - Section navigation/routing1. **Aim** - Learning objectives and overview
-
-   - Temporal analysis
-
-   - Magnitude histogram- `utils.js` - CSV parsing, Gutenberg-Richter calculations2. **Theory** - Theoretical background on seismicity analysis
-
-6. **Post-Test** - Quiz (5 questions)
-
-7. **References** - Citations- `styles.css` - Custom styling3. **Pre-Test** - Knowledge assessment quiz
-
-
-
-## Usage- `isc-gem-cat.csv` - Earthquake data (1904-2021)4. **Procedure** - Step-by-step usage guide
-
-
-
-1. Click sections in left sidebar to navigate5. **Simulation** - Interactive earthquake analysis tool with:
-
-2. Go to **Simulation** section
-
-3. Set search parameters (lat/lon, radius, magnitude, dates)## Dependencies (CDN)   - Interactive map with customizable center and radius
-
-4. Click **Search Earthquakes**
-
-5. View results in map and charts   - Gutenberg-Richter relationship plotting
-
-
-
-## Key FunctionsAll loaded from CDN - no npm install needed:   - Depth distribution analysis
-
-
-
-**utils.js**- Tailwind CSS 3.x   - Temporal analysis (time series)
-
-- `parseISCGEMCSV()` - Parse CSV data
-
-- `filterEarthquakes()` - Filter by criteria- Bootstrap 3.3.4   - Magnitude distribution histogram
-
-- `calculateGRValues()` - Gutenberg-Richter analysis
-
-- `calculateLinearRegression()` - Trend line calculation- Leaflet 1.9.46. **Post-Test** - Knowledge assessment quiz
-
-
-
-**app.js**- Chart.js 4.4.07. **References** - Citations and additional resources
-
-- `initializeApp()` - Initialize application
-
-- `loadCSVData()` - Load earthquake data- jQuery 2.0.3
-
-- `initializeMap()` - Setup Leaflet map
-
-- `handleSearch()` - Process search- Font Awesome 4.5.0## How to Run
-
-- `updateMap()` - Update markers
-
-- `updateCharts()` - Update visualizations
-
-
-
-**navigation.js**## Usage### Option 1: Simple HTTP Server (Python)
-
-- Hash-based routing for sections
-
-- Sidebar active state management```bash
-
-
-
-## Browser Requirements1. Click sections in left sidebar to navigatecd frontend
-
-
-
-Modern browser with ES6+ support (Chrome, Firefox, Edge, Safari).2. Go to **Simulation** sectionpython -m http.server 8000
-
-
-
-## Data Files3. Set search parameters (lat/lon, radius, magnitude, dates)```
-
-
-
-- `isc-gem-cat.csv` - Main catalogue (40,000+ events)4. Click **Search Earthquakes**Then open http://localhost:8000 in your browser.
-
-- `isc-gem-suppl.csv` - Supplementary data (optional)
-
-5. View results in map and charts
-
-### Option 2: Simple HTTP Server (Node.js)
-
-## Browser Support```bash
-
-cd frontend
-
-Requires modern browser with ES6+ support (Chrome, Firefox, Edge, Safari).npx http-server -p 8000
-
-```
-Then open http://localhost:8000 in your browser.
-
-### Option 3: Live Server (VS Code Extension)
-1. Install the "Live Server" extension in VS Code
-2. Right-click on `index.html`
+1. Install the "Live Server" extension
+2. Right-click `index.html`
 3. Select "Open with Live Server"
 
-### Option 4: Direct File Opening
-Simply open `index.html` in your web browser. Note: Some features may not work due to CORS restrictions when loading CSV files.
+## 🔧 Troubleshooting
 
-## Data Files
-Make sure the following CSV files are in the `frontend` directory:
-- `isc-gem-cat.csv` - Main earthquake catalogue
-- `isc-gem-suppl.csv` - Supplemental data (optional)
+### macOS: "Command not found: python3"
 
-These files should be in the same directory as `index.html`.
+macOS 12.3+ comes with Python 3. Check with:
+```bash
+python3 --version
+```
 
-## Dependencies (All via CDN)
-All dependencies are loaded via CDN links in the HTML file:
-- Tailwind CSS 3.x (via CDN)
-- Bootstrap 3.3.4
-- Font Awesome 4.5.0
-- Leaflet 1.9.4
-- Chart.js 4.4.0
-- jQuery 2.0.3
+If not available, install from: https://www.python.org/downloads/
 
-**No npm install required!** The application runs entirely in the browser.
+### macOS: "Permission denied: ./start-server.sh"
 
-## Browser Compatibility
+Make the script executable:
+```bash
+chmod +x start-server.sh
+```
+
+### Port 8000 Already in Use
+
+Use a different port:
+```bash
+python3 -m http.server 8080
+```
+Then open: http://localhost:8080
+
+### Still Seeing CORS Errors?
+
+Common causes:
+1. ❌ Opening `index.html` directly (file:// protocol)
+2. ✅ Solution: Access via http://localhost:8000
+3. Make sure the server is running in the `frontend` folder
+4. Verify `isc-gem-cat.csv` exists in the same folder
+
+### The App Shows a CORS Error Message
+
+If you see a red error screen, it means you opened the HTML file directly. Follow the instructions on the error screen to start the HTTP server properly.
+
+## 📁 Project Structure
+
+```
+frontend/
+├── index.html              # Main HTML file (single-page app)
+├── app.js                  # Core application logic
+├── components.js           # UI component generators
+├── navigation.js           # Hash-based routing
+├── utils.js                # CSV parser, calculations
+├── styles.css              # Custom styling
+├── isc-gem-cat.csv         # Earthquake data (1904-2021)
+├── start-server.bat        # Windows server launcher
+├── start-server.sh         # macOS/Linux server launcher
+├── README.md               # This file
+├── README_MACOS.md         # macOS-specific instructions
+└── public/                 # Static assets (Bootstrap, plugins)
+```
+
+## 🛠️ Tech Stack
+
+- **HTML5** - Structure and content
+- **CSS3** - Styling (Tailwind CSS + Bootstrap via CDN)
+- **Vanilla JavaScript** - Application logic (no frameworks!)
+- **Leaflet** - Interactive maps
+- **Chart.js** - Data visualization
+- **Bootstrap 3** - UI components
+- **jQuery** - DOM manipulation
+
+**No npm install required!** All dependencies load from CDN.
+
+## 📚 Features & Sections
+
+1. **Aim** - Learning objectives
+2. **Theory** - Seismology concepts and background
+3. **Pre-Test** - Assessment quiz (5 questions)
+4. **Procedure** - Step-by-step guide
+5. **Simulation** - Interactive earthquake analysis
+   - Interactive map with earthquake markers
+   - Gutenberg-Richter plot
+   - Depth distribution analysis
+   - Temporal analysis
+   - Magnitude histogram
+6. **Post-Test** - Assessment quiz (5 questions)
+7. **References** - Citations and resources
+
+## 🎯 How to Use the App
+
+1. Start the HTTP server (see Quick Start above)
+2. Open http://localhost:8000 in your browser
+3. Navigate using the left sidebar
+4. Go to **Simulation** section
+5. Set search parameters:
+   - Latitude/Longitude
+   - Search radius (km)
+   - Magnitude range
+   - Date range
+6. Click **Search Earthquakes**
+7. Explore results in map and charts
+
+## 🔑 Key Functions
+
+### utils.js
+- `parseISCGEMCSV()` - Parse CSV earthquake data
+- `filterEarthquakes()` - Filter by location, magnitude, date
+- `calculateGRValues()` - Gutenberg-Richter analysis
+- `calculateLinearRegression()` - Statistical trend lines
+
+### app.js
+- `initializeApp()` - Initialize application
+- `loadCSVData()` - Load earthquake catalog
+- `initializeMap()` - Setup Leaflet map
+- `searchEarthquakes()` - Execute search with filters
+- `updateCharts()` - Render all visualizations
+
+### components.js
+- `createAppUI()` - Generate main interface
+- `createQuizUI()` - Generate quiz sections
+
+### navigation.js
+- `initializeNavigation()` - Setup hash-based routing
+- `activateSection()` - Handle section switching
+
+## 📊 Data Source
+
+**ISC-GEM Global Instrumental Earthquake Catalogue (1904-2021)**
+- Source: International Seismological Centre
+- Coverage: Global, Magnitude ≥ 5.5
+- Format: CSV
+- Fields: Date, Time, Location, Magnitude, Depth, etc.
+
+## 🌐 Browser Compatibility
+
 - Chrome/Edge (recommended)
 - Firefox
 - Safari
 - Opera
 
-Modern browsers with ES6+ support required.
+**Note:** Requires JavaScript enabled and modern browser support for ES6+.
 
-## Usage Guide
+## 💡 Why Use an HTTP Server?
 
-### 1. Navigate Sections
-Use the left sidebar to navigate between different sections:
-- Click on any section name to view its content
-- The active section is highlighted in blue
+Modern browsers enforce **Same-Origin Policy** and **CORS** (Cross-Origin Resource Sharing) security:
 
-### 2. Run Simulations
-1. Go to the "Simulation" section
-2. Set search parameters:
-   - Latitude and Longitude (or click on map)
-   - Search radius in kilometers
-   - Minimum magnitude
-   - Date range
-3. Click "Search Earthquakes"
-4. View results in different tabs:
-   - Map: Visual distribution
-   - G-R Plot: Frequency-magnitude relationship
-   - Depth Distribution: Earthquake depth analysis
-   - Temporal Analysis: Time series
-   - Magnitude Distribution: Histogram
+- ❌ `file://` protocol: Blocks loading external resources (CSV, JSON, etc.)
+- ✅ `http://` protocol: Allows loading resources from same origin
 
-### 3. Take Quizzes
-- Pre-Test: Before learning
-- Post-Test: After completing the simulation
+**Even for local development, always use an HTTP server!**
 
-## Key Functions
+## 📝 Development Notes
 
-### utils.js
-- `parseISCGEMCSV(csvText)` - Parse earthquake CSV data
-- `filterEarthquakes(earthquakes, filters)` - Filter by criteria
-- `calculateGRValues(magnitudes)` - Calculate G-R relationship
-- `calculateLinearRegression(data)` - Linear regression for trend line
-- `calculateDistance(lat1, lon1, lat2, lon2)` - Haversine distance
+- No build process required
+- No package.json or node_modules
+- All dependencies via CDN
+- Pure vanilla JavaScript (ES6+)
+- Hash-based routing (no server-side routing needed)
+- Works entirely client-side
 
-### components.js
-- `createAppUI()` - Generate main application interface
-- `createQuizUI(quizId)` - Generate quiz interface
-- `handleQuizSubmit(quizId, formId)` - Handle quiz submissions
+## 🐛 Common Issues
 
-### app.js
-- `initializeApp()` - Initialize application
-- `loadCSVData()` - Load earthquake catalogue
-- `initializeMap()` - Setup Leaflet map
-- `handleSearch()` - Process search queries
-- `updateMap()` - Update map markers
-- `updateCharts()` - Update all visualizations
-- `switchTab(tabName)` - Switch between visualization tabs
+| Issue | Solution |
+|-------|----------|
+| CORS Error | Use HTTP server, not file:// |
+| CSV not loading | Check server is in `frontend` folder |
+| Port in use | Try different port (8080, 3000, etc.) |
+| Blank page | Check browser console for errors |
+| Map not showing | Check internet connection (Leaflet CDN) |
 
-### navigation.js
-- Hash-based routing for single-page navigation
-- Sidebar active state management
-- Breadcrumb updates
+## 📖 Additional Resources
 
-## Customization
+- [README_MACOS.md](README_MACOS.md) - Detailed macOS setup guide
+- [ISC-GEM Catalogue](http://www.isc.ac.uk/iscgem/) - Data source documentation
 
-### Change Default Search Location
-Edit the default values in `components.js`:
-```javascript
-value="36.17"  // latitude
-value="-115.14" // longitude
-value="500"     // radius in km
-```
+## 📧 Support
 
-### Modify Map Styles
-Change tile layers in `app.js` function `updateMapTiles()`:
-- terrain: OpenTopoMap
-- satellite: Esri World Imagery
-- street: OpenStreetMap
+For issues or questions, check:
+1. Browser console (F12)
+2. README_MACOS.md for macOS-specific help
+3. Verify all files are in place
+4. Ensure HTTP server is running
 
-### Adjust Color Schemes
-Modify `getMagnitudeColor()` in `utils.js` to change earthquake marker colors.
+---
 
-## Troubleshooting
-
-### CSV File Not Loading
-- Ensure `isc-gem-cat.csv` is in the same directory as `index.html`
-- Use a local web server (not direct file:// protocol)
-- Check browser console for CORS errors
-
-### Map Not Displaying
-- Check that Leaflet CSS and JS are loading from CDN
-- Ensure div with id="map" exists
-- Check browser console for errors
-
-### Charts Not Rendering
-- Verify Chart.js is loading from CDN
-- Ensure canvas elements exist in HTML
-- Check that data is being passed correctly
-
-## License
-MIT License - See LICENSE file for details
-
-## Data Source
-ISC-GEM Global Earthquake Catalogue
-- Storchak, D.A., Di Giacomo, D., Bondár, I. et al. (2013)
-- http://www.isc.ac.uk/iscgem/
-
-## Author
-Sameer Rawat
-
-## Version
-2.0.0 - Vanilla JavaScript version (no build tools)
+**Happy Analyzing! 🌍📈**

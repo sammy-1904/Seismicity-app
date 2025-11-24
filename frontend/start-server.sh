@@ -6,6 +6,11 @@ echo "============================================"
 echo "Seismicity Analysis App - Local Server"
 echo "============================================"
 echo ""
+echo "IMPORTANT: Do not open index.html directly!"
+echo "Always use this script to start the server."
+echo "Direct file:// access will cause CORS errors."
+echo "============================================"
+echo ""
 
 # Check if Python 3 is available
 if command -v python3 &> /dev/null; then

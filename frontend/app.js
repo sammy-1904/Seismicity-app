@@ -60,6 +60,33 @@ async function loadCSVData() {
   const csvLoading = document.getElementById('csv-loading');
   const mainContent = document.getElementById('main-content');
   
+  // Check if using file:// protocol
+  if (window.location.protocol === 'file:') {
+    csvLoading.innerHTML = `
+      <div class="text-red-500 p-8 max-w-2xl mx-auto">
+        <i class="fa fa-exclamation-triangle fa-4x mb-4"></i>
+        <h2 class="text-2xl font-bold mb-4">CORS Error: Cannot Load Files</h2>
+        <p class="text-lg mb-4">You are opening this app directly from the file system (file:// protocol).</p>
+        <p class="mb-4">This causes CORS (Cross-Origin Resource Sharing) errors that prevent loading CSV data.</p>
+        <div class="bg-yellow-100 text-yellow-900 p-4 rounded mb-4">
+          <h3 class="font-bold mb-2">🔧 How to Fix:</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li><strong>macOS/Linux:</strong> Open Terminal in the frontend folder and run:<br/>
+                <code class="bg-gray-800 text-white px-2 py-1 rounded">./start-server.sh</code> or 
+                <code class="bg-gray-800 text-white px-2 py-1 rounded">python3 -m http.server 8000</code>
+            </li>
+            <li><strong>Windows:</strong> Double-click <code>start-server.bat</code> or run:<br/>
+                <code class="bg-gray-800 text-white px-2 py-1 rounded">python -m http.server 8000</code>
+            </li>
+            <li>Then open your browser to: <strong>http://localhost:8000</strong></li>
+          </ol>
+        </div>
+        <p class="text-sm">⚠️ Never open index.html directly - always use the HTTP server!</p>
+      </div>
+    `;
+    return;
+  }
+  
   try {
     const response = await fetch('isc-gem-cat.csv');
     const csvText = await response.text();

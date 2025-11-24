@@ -6,6 +6,11 @@ echo ============================================
 echo Seismicity Analysis App - Local Server
 echo ============================================
 echo.
+echo IMPORTANT: Do not open index.html directly!
+echo Always use this script to start the server.
+echo Direct file:// access will cause CORS errors.
+echo ============================================
+echo.
 
 REM Check if Python is available
 python --version >nul 2>&1
