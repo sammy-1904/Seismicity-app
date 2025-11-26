@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚠️ Server Required - Seismicity App</title>
+    <title>Seismicity App Ready!</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             justify-content: center;
@@ -18,140 +18,75 @@
         .container {
             background: white;
             border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             padding: 40px;
-            max-width: 600px;
-            text-align: center;
+            max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        h1 {
-            color: #dc2626;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        .icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
-        .message {
-            color: #374151;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: left;
-        }
+        h1 { color: #667eea; text-align: center; margin-top: 0; }
+        .icon { text-align: center; font-size: 4em; margin-bottom: 20px; }
+        .message { text-align: center; line-height: 1.6; margin-bottom: 25px; }
         .steps {
-            background: #f3f4f6;
-            border-radius: 8px;
+            background: #f8f9fa;
+            border-radius: 10px;
             padding: 20px;
-            text-align: left;
             margin: 20px 0;
+            text-align: left;
         }
-        .steps h3 {
-            color: #1f2937;
-            margin-top: 0;
-        }
-        .steps ol {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        .steps li {
-            margin: 10px 0;
-            color: #4b5563;
-        }
+        .steps ol { padding-left: 20px; line-height: 1.8; }
+        .steps li { margin: 10px 0; }
         code {
-            background: #1f2937;
-            color: #10b981;
-            padding: 2px 8px;
+            background: #f4f4f4;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-        .platform {
-            margin: 20px 0;
-            padding: 15px;
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            border-radius: 4px;
-            text-align: left;
+            font-family: monospace;
         }
         .button {
-            display: inline-block;
-            background: #10b981;
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
+            padding: 15px 30px;
             text-decoration: none;
+            border-radius: 10px;
             font-weight: bold;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        .button:hover {
-            background: #059669;
-        }
-        .warning {
-            background: #fee2e2;
-            border-left: 4px solid #dc2626;
-            padding: 15px;
-            border-radius: 4px;
+            text-align: center;
             margin: 20px 0;
-            text-align: left;
+            transition: transform 0.2s;
         }
+        .button:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="icon">⚠️</div>
-        <h1>HTTP Server Required!</h1>
+        <div class="icon"></div>
+        <h1>Seismicity App Ready!</h1>
         
         <div class="message">
-            <p><strong>This application cannot run directly from the file system.</strong></p>
-            <p>You need to start a local HTTP server to avoid CORS errors when loading CSV data.</p>
-        </div>
-
-        <div class="warning">
-            <strong>❌ Don't:</strong> Open index.html by double-clicking it<br>
-            <strong>✅ Do:</strong> Use an HTTP server as shown below
-        </div>
-
-        <div class="platform">
-            <h3>🍎 macOS/Linux Users:</h3>
-            <ol>
-                <li>Open <strong>Terminal</strong></li>
-                <li>Navigate to this folder</li>
-                <li>Run: <code>./start-server.sh</code></li>
-                <li>Or: <code>python3 -m http.server 8000</code></li>
-                <li>Open browser to: <code>http://localhost:8000</code></li>
-            </ol>
-        </div>
-
-        <div class="platform">
-            <h3>🪟 Windows Users:</h3>
-            <ol>
-                <li>Double-click <code>start-server.bat</code></li>
-                <li>Or open Command Prompt/PowerShell</li>
-                <li>Run: <code>python -m http.server 8000</code></li>
-                <li>Open browser to: <code>http://localhost:8000</code></li>
-            </ol>
+            <p><strong>No server required!</strong> Just double-click <code>index.html</code></p>
+            <p style="color: #666; font-size: 0.9em;">Works on Windows, Mac, and Linux</p>
         </div>
 
         <div class="steps">
-            <h3>📚 More Options:</h3>
-            <ul style="list-style: none; padding: 0;">
-                <li>• PHP: <code>php -S localhost:8000</code></li>
-                <li>• Node.js: <code>npx http-server -p 8000</code></li>
-                <li>• VS Code: Install "Live Server" extension</li>
-            </ul>
+            <h3> How to Use</h3>
+            <ol>
+                <li><strong>Double-click</strong> <code>index.html</code> in your file explorer</li>
+                <li><strong>OR</strong> drag <code>index.html</code> into your browser</li>
+                <li><strong>OR</strong> press Ctrl+O (Cmd+O on Mac) and select <code>index.html</code></li>
+            </ol>
+            <p style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 5px; font-size: 0.9em;">
+                <strong>Mac:</strong> If double-click doesn't work, right-click  "Open With"  Safari
+            </p>
         </div>
 
-        <p style="margin-top: 30px; color: #6b7280; font-size: 0.9em;">
-            📖 See <strong>README.md</strong> or <strong>README_MACOS.md</strong> for detailed instructions
+        <a href="index.html" class="button"> Launch Seismicity App</a>
+
+        <p style="text-align: center; color: #999; font-size: 0.85em;">
+            See QUICKSTART.txt or README_STANDALONE.md for more info
         </p>
     </div>
 
     <script>
-        // Auto-redirect if we detect we're being served via HTTP
         if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-            // Redirect to the actual app
-            window.location.href = 'index.html';
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
         }
     </script>
 </body>

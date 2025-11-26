@@ -1,0 +1,44 @@
+# 🌍 Seismicity App - Quick Start
+
+## ✅ Ready to Use - No Server Required!
+
+This app works **completely standalone** on all operating systems.
+
+## 🚀 How to Run
+
+### All Platforms (Windows, Mac, Linux)
+
+Just **double-click `index.html`** in your file explorer!
+
+### Alternative Methods
+
+- **Drag & Drop:** Drag `index.html` into any browser window
+- **From Browser:** Press `Ctrl+O` (Windows/Linux) or `Cmd+O` (Mac), then select `index.html`
+
+### Mac Users
+If double-clicking doesn't work:
+1. Right-click `index.html`
+2. Select "Open With" → Safari (or your preferred browser)
+
+## ✨ Features
+
+- ✅ **No installation** needed
+- ✅ **No server** required
+- ✅ **Works offline** (after first load)
+- ✅ **All platforms** - Windows, Mac, Linux
+- ✅ **74,000+ earthquakes** embedded
+- ✅ **Completely portable** - copy folder anywhere
+
+## 💡 Pro Tips
+
+- **Bookmark it:** After opening, press `Ctrl+D` or `Cmd+D` to bookmark
+- **Desktop shortcut:** Create an alias/shortcut of `index.html` on your desktop
+- **Share it:** Copy the entire `frontend` folder - it works anywhere!
+
+## 📖 More Info
+
+See `README_STANDALONE.md` for detailed documentation.
+
+---
+
+**That's it! Just double-click index.html and start exploring earthquake data! 🌍**

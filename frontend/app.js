@@ -54,58 +54,60 @@ async function initializeApp() {
 }
 
 /**
- * Load CSV earthquake data
+ * Load earthquake data from embedded JavaScript file
+ * This allows the app to work as a standalone HTML file without a server
  */
 async function loadCSVData() {
   const csvLoading = document.getElementById('csv-loading');
   const mainContent = document.getElementById('main-content');
   
-  // Check if using file:// protocol
-  if (window.location.protocol === 'file:') {
-    csvLoading.innerHTML = `
-      <div class="text-red-500 p-8 max-w-2xl mx-auto">
-        <i class="fa fa-exclamation-triangle fa-4x mb-4"></i>
-        <h2 class="text-2xl font-bold mb-4">CORS Error: Cannot Load Files</h2>
-        <p class="text-lg mb-4">You are opening this app directly from the file system (file:// protocol).</p>
-        <p class="mb-4">This causes CORS (Cross-Origin Resource Sharing) errors that prevent loading CSV data.</p>
-        <div class="bg-yellow-100 text-yellow-900 p-4 rounded mb-4">
-          <h3 class="font-bold mb-2">🔧 How to Fix:</h3>
-          <ol class="list-decimal list-inside space-y-2">
-            <li><strong>macOS/Linux:</strong> Open Terminal in the frontend folder and run:<br/>
-                <code class="bg-gray-800 text-white px-2 py-1 rounded">./start-server.sh</code> or 
-                <code class="bg-gray-800 text-white px-2 py-1 rounded">python3 -m http.server 8000</code>
-            </li>
-            <li><strong>Windows:</strong> Double-click <code>start-server.bat</code> or run:<br/>
-                <code class="bg-gray-800 text-white px-2 py-1 rounded">python -m http.server 8000</code>
-            </li>
-            <li>Then open your browser to: <strong>http://localhost:8000</strong></li>
-          </ol>
-        </div>
-        <p class="text-sm">⚠️ Never open index.html directly - always use the HTTP server!</p>
-      </div>
-    `;
-    return;
-  }
-  
   try {
-    const response = await fetch('isc-gem-cat.csv');
-    const csvText = await response.text();
-    const parsedData = parseISCGEMCSV(csvText);
-    allEarthquakes = parsedData.features;
+    // Check if embedded data is available (from earthquake-data.js)
+    if (typeof EARTHQUAKE_DATA === 'undefined') {
+      throw new Error('Earthquake data not loaded. Make sure earthquake-data.js is included in index.html');
+    }
     
-    console.log(`Loaded ${allEarthquakes.length} earthquakes from CSV`);
+    // Convert embedded data to GeoJSON-like format
+    console.log(`Loading ${EARTHQUAKE_DATA.length} earthquakes from embedded data...`);
+    
+    allEarthquakes = EARTHQUAKE_DATA.map((eq, index) => ({
+      type: 'Feature',
+      properties: {
+        mag: eq.m,
+        place: `${eq.la.toFixed(2)}°, ${eq.lo.toFixed(2)}°`,
+        time: new Date(eq.dt).getTime(),
+        depth: eq.d,
+        title: `M ${eq.m.toFixed(1)} - ${eq.la.toFixed(2)}°, ${eq.lo.toFixed(2)}°`,
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [eq.lo, eq.la, eq.d]
+      },
+      id: index
+    }));
+    
+    console.log(`Loaded ${allEarthquakes.length} earthquakes from embedded data`);
     
     // Show main content
     csvLoading.style.display = 'none';
     mainContent.style.display = 'block';
     
   } catch (error) {
-    console.error('Failed to load CSV data:', error);
+    console.error('Failed to load earthquake data:', error);
     csvLoading.innerHTML = `
-      <div class="text-red-500">
-        <i class="fa fa-exclamation-triangle fa-3x"></i>
-        <p class="mt-4 text-lg">Failed to load earthquake data</p>
-        <p class="text-sm">Please check the console for more details</p>
+      <div class="text-red-500 p-8 max-w-2xl mx-auto">
+        <i class="fa fa-exclamation-triangle fa-4x mb-4"></i>
+        <h2 class="text-2xl font-bold mb-4">Data Loading Error</h2>
+        <p class="text-lg mb-4">Failed to load earthquake data</p>
+        <p class="mb-4"><strong>Error:</strong> ${error.message}</p>
+        <div class="bg-yellow-100 text-yellow-900 p-4 rounded mb-4">
+          <h3 class="font-bold mb-2">🔧 Possible Solutions:</h3>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Make sure <code>earthquake-data.js</code> file exists in the same folder</li>
+            <li>If you don't have this file, run: <code>python convert-csv-to-js.py</code></li>
+            <li>Check the browser console for more details</li>
+          </ol>
+        </div>
       </div>
     `;
   }
@@ -133,7 +135,7 @@ function initializeMap() {
   // Add center marker
   const centerIcon = L.divIcon({
     className: 'custom-center-marker',
-    html: '<div style="background-color: #3b82f6; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
+    html: '<div style="background-color: #2196F3; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
     iconSize: [24, 24],
     iconAnchor: [12, 12]
   });
@@ -219,8 +221,8 @@ function updateSearchCircle() {
   }
   
   searchCircle = L.circle([lat, lon], {
-    color: '#3b82f6',
-    fillColor: '#3b82f6',
+    color: '#2196F3',
+    fillColor: '#2196F3',
     fillOpacity: 0.1,
     radius: radius
   }).addTo(map);
@@ -395,19 +397,19 @@ function updateGRChart() {
     statsDiv.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <p class="text-sm text-gray-400">b-value</p>
-          <p class="text-2xl font-bold text-blue-400">${bValue.toFixed(3)}</p>
+          <p class="text-sm text-gray-600">b-value</p>
+          <p class="text-2xl font-bold text-blue-600">${bValue.toFixed(3)}</p>
         </div>
         <div>
-          <p class="text-sm text-gray-400">a-value</p>
-          <p class="text-2xl font-bold text-blue-400">${aValue.toFixed(2)}</p>
+          <p class="text-sm text-gray-600">a-value</p>
+          <p class="text-2xl font-bold text-blue-600">${aValue.toFixed(2)}</p>
         </div>
         <div>
-          <p class="text-sm text-gray-400">Correlation (R)</p>
-          <p class="text-2xl font-bold text-blue-400">${correlation.toFixed(3)}</p>
+          <p class="text-sm text-gray-600">Correlation (R)</p>
+          <p class="text-2xl font-bold text-blue-600">${correlation.toFixed(3)}</p>
         </div>
       </div>
-      <div class="mt-2 text-sm text-gray-400">
+      <div class="mt-2 text-sm text-gray-600">
         Equation: log₁₀(N) = ${aValue.toFixed(2)} - ${bValue.toFixed(3)}M
       </div>
     `;
@@ -596,8 +598,8 @@ function updateTemporalChart() {
       datasets: [{
         label: 'Earthquakes per Year',
         data: counts,
-        borderColor: 'rgba(59, 130, 246, 1)',
-        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+        borderColor: 'rgba(33, 150, 243, 1)',
+        backgroundColor: 'rgba(33, 150, 243, 0.2)',
         fill: true,
         tension: 0.1
       }]
@@ -607,12 +609,14 @@ function updateTemporalChart() {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          labels: { color: '#e5e7eb' }
+          labels: { color: '#333' }
         },
         tooltip: {
-          backgroundColor: 'rgba(17, 24, 39, 0.95)',
-          titleColor: '#f3f4f6',
-          bodyColor: '#e5e7eb'
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          titleColor: '#333',
+          bodyColor: '#666',
+          borderColor: '#ddd',
+          borderWidth: 1
         }
       },
       scales: {
@@ -620,23 +624,23 @@ function updateTemporalChart() {
           title: {
             display: true,
             text: 'Year',
-            color: '#e5e7eb'
+            color: '#333'
           },
           ticks: { 
-            color: '#9ca3af',
+            color: '#666',
             maxRotation: 45,
             minRotation: 45
           },
-          grid: { color: 'rgba(75, 85, 99, 0.3)' }
+          grid: { color: 'rgba(0, 0, 0, 0.1)' }
         },
         y: {
           title: {
             display: true,
             text: 'Number of Earthquakes',
-            color: '#e5e7eb'
+            color: '#333'
           },
-          ticks: { color: '#9ca3af' },
-          grid: { color: 'rgba(75, 85, 99, 0.3)' }
+          ticks: { color: '#666' },
+          grid: { color: 'rgba(0, 0, 0, 0.1)' }
         }
       }
     }
@@ -684,8 +688,8 @@ function updateMagnitudeChart() {
       datasets: [{
         label: 'Number of Earthquakes',
         data: binCounts,
-        backgroundColor: 'rgba(59, 130, 246, 0.7)',
-        borderColor: 'rgba(59, 130, 246, 1)',
+        backgroundColor: 'rgba(33, 150, 243, 0.7)',
+        borderColor: 'rgba(33, 150, 243, 1)',
         borderWidth: 1
       }]
     },
@@ -694,12 +698,14 @@ function updateMagnitudeChart() {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          labels: { color: '#e5e7eb' }
+          labels: { color: '#333' }
         },
         tooltip: {
-          backgroundColor: 'rgba(17, 24, 39, 0.95)',
-          titleColor: '#f3f4f6',
-          bodyColor: '#e5e7eb'
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          titleColor: '#333',
+          bodyColor: '#666',
+          borderColor: '#ddd',
+          borderWidth: 1
         }
       },
       scales: {
@@ -707,19 +713,19 @@ function updateMagnitudeChart() {
           title: {
             display: true,
             text: 'Magnitude Range',
-            color: '#e5e7eb'
+            color: '#333'
           },
-          ticks: { color: '#9ca3af' },
-          grid: { color: 'rgba(75, 85, 99, 0.3)' }
+          ticks: { color: '#666' },
+          grid: { color: 'rgba(0, 0, 0, 0.1)' }
         },
         y: {
           title: {
             display: true,
             text: 'Frequency',
-            color: '#e5e7eb'
+            color: '#333'
           },
-          ticks: { color: '#9ca3af' },
-          grid: { color: 'rgba(75, 85, 99, 0.3)' }
+          ticks: { color: '#666' },
+          grid: { color: 'rgba(0, 0, 0, 0.1)' }
         }
       }
     }

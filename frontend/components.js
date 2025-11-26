@@ -5,75 +5,75 @@
  */
 function createAppUI() {
   return `
-    <div class="bg-gray-900 text-white p-6 rounded-lg shadow-xl">
+    <div class="bg-white text-gray-800 p-6 rounded-lg shadow-xl">
       <!-- Loading Indicator -->
       <div id="csv-loading" class="text-center p-8">
         <i class="fa fa-spinner fa-spin fa-3x text-blue-500"></i>
-        <p class="mt-4 text-lg">Loading earthquake catalogue...</p>
+        <p class="mt-4 text-lg text-gray-700">Loading earthquake catalogue...</p>
       </div>
 
       <!-- Main Content -->
       <div id="main-content" style="display: none;">
         <!-- Search Parameters -->
-        <div class="bg-gray-800 p-6 rounded-lg mb-6">
-          <h2 class="text-2xl font-bold mb-4 text-blue-400">Search Parameters</h2>
+        <div class="bg-white p-6 rounded-lg mb-6 shadow-sm border border-gray-200">
+          <h2 class="text-2xl font-bold mb-4 text-gray-800">Search Parameters</h2>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
-              <label class="block text-sm font-medium mb-2">Latitude</label>
+              <label class="block text-sm font-medium mb-2 text-gray-700">Latitude</label>
               <input type="number" id="latitude" step="0.01" 
-                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 value="36.17">
             </div>
             
             <div>
-              <label class="block text-sm font-medium mb-2">Longitude</label>
+              <label class="block text-sm font-medium mb-2 text-gray-700">Longitude</label>
               <input type="number" id="longitude" step="0.01"
-                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 value="-115.14">
             </div>
             
             <div>
-              <label class="block text-sm font-medium mb-2">Search Radius (km)</label>
+              <label class="block text-sm font-medium mb-2 text-gray-700">Search Radius (km)</label>
               <input type="number" id="maxradiuskm" step="10" min="10"
-                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 value="500">
             </div>
             
             <div>
-              <label class="block text-sm font-medium mb-2">Minimum Magnitude</label>
+              <label class="block text-sm font-medium mb-2 text-gray-700">Minimum Magnitude</label>
               <input type="number" id="minmagnitude" step="0.1" min="0"
-                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 value="5.0">
             </div>
             
             <div>
-              <label class="block text-sm font-medium mb-2">Start Date</label>
+              <label class="block text-sm font-medium mb-2 text-gray-700">Start Date</label>
               <input type="date" id="starttime"
-                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 value="1904-01-01">
             </div>
             
             <div>
-              <label class="block text-sm font-medium mb-2">End Date</label>
+              <label class="block text-sm font-medium mb-2 text-gray-700">End Date</label>
               <input type="date" id="endtime"
-                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 value="2021-12-31">
             </div>
           </div>
           
           <div class="mt-4">
             <button id="search-btn" 
-              class="w-full md:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+              class="w-full md:w-auto px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
               <i class="fa fa-search mr-2"></i> Search Earthquakes
             </button>
           </div>
         </div>
 
         <!-- Results Summary -->
-        <div id="results-summary" class="bg-gray-800 p-4 rounded-lg mb-6" style="display: none;">
+        <div id="results-summary" class="bg-white p-4 rounded-lg mb-6 shadow-sm border border-gray-200" style="display: none;">
           <div class="flex items-center justify-between">
-            <span class="text-lg font-semibold">
+            <span class="text-lg font-semibold text-gray-800">
               <i class="fa fa-check-circle text-green-500 mr-2"></i>
               <span id="results-count">0</span> earthquakes found
             </span>
@@ -86,7 +86,7 @@ function createAppUI() {
 
         <!-- Tabs -->
         <div class="mb-6">
-          <ul class="flex flex-wrap border-b border-gray-700">
+          <ul class="flex flex-wrap border-b border-gray-300">
             <li class="mr-2">
               <button class="tab-btn active inline-block px-6 py-3 rounded-t-lg" data-tab="map">
                 <i class="fa fa-map-marker mr-2"></i>Map
@@ -118,19 +118,19 @@ function createAppUI() {
         <!-- Tab Content -->
         <div class="tab-content">
           <div id="map-tab" class="tab-pane active">
-            <div class="bg-gray-800 p-4 rounded-lg">
+            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
               <div class="mb-4">
                 <label class="inline-flex items-center mr-4">
-                  <input type="radio" name="mapType" value="terrain" checked class="form-radio text-blue-600">
-                  <span class="ml-2">Terrain</span>
+                  <input type="radio" name="mapType" value="terrain" checked class="form-radio text-blue-500">
+                  <span class="ml-2 text-gray-700">Terrain</span>
                 </label>
                 <label class="inline-flex items-center mr-4">
-                  <input type="radio" name="mapType" value="satellite" class="form-radio text-blue-600">
-                  <span class="ml-2">Satellite</span>
+                  <input type="radio" name="mapType" value="satellite" class="form-radio text-blue-500">
+                  <span class="ml-2 text-gray-700">Satellite</span>
                 </label>
                 <label class="inline-flex items-center">
-                  <input type="radio" name="mapType" value="street" class="form-radio text-blue-600">
-                  <span class="ml-2">Street</span>
+                  <input type="radio" name="mapType" value="street" class="form-radio text-blue-500">
+                  <span class="ml-2 text-gray-700">Street</span>
                 </label>
               </div>
               <div id="map" style="height: 600px; width: 100%; border-radius: 8px;"></div>
@@ -138,9 +138,9 @@ function createAppUI() {
           </div>
 
           <div id="gr-tab" class="tab-pane" style="display: none;">
-            <div class="bg-gray-800 p-4 rounded-lg">
-              <h3 class="text-xl font-bold mb-4 text-blue-400">Gutenberg-Richter Relationship</h3>
-              <div id="gr-stats" class="mb-4 p-4 bg-gray-700 rounded-lg"></div>
+            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+              <h3 class="text-xl font-bold mb-4 text-gray-800">Gutenberg-Richter Relationship</h3>
+              <div id="gr-stats" class="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200"></div>
               <div style="height: 500px;">
                 <canvas id="gr-chart"></canvas>
               </div>
@@ -148,8 +148,8 @@ function createAppUI() {
           </div>
 
           <div id="depth-tab" class="tab-pane" style="display: none;">
-            <div class="bg-gray-800 p-4 rounded-lg">
-              <h3 class="text-xl font-bold mb-4 text-blue-400">Depth Distribution</h3>
+            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+              <h3 class="text-xl font-bold mb-4 text-gray-800">Depth Distribution</h3>
               <div style="height: 500px;">
                 <canvas id="depth-chart"></canvas>
               </div>
@@ -157,8 +157,8 @@ function createAppUI() {
           </div>
 
           <div id="temporal-tab" class="tab-pane" style="display: none;">
-            <div class="bg-gray-800 p-4 rounded-lg">
-              <h3 class="text-xl font-bold mb-4 text-blue-400">Temporal Analysis</h3>
+            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+              <h3 class="text-xl font-bold mb-4 text-gray-800">Temporal Analysis</h3>
               <div style="height: 500px;">
                 <canvas id="temporal-chart"></canvas>
               </div>
@@ -166,8 +166,8 @@ function createAppUI() {
           </div>
 
           <div id="magnitude-tab" class="tab-pane" style="display: none;">
-            <div class="bg-gray-800 p-4 rounded-lg">
-              <h3 class="text-xl font-bold mb-4 text-blue-400">Magnitude Distribution</h3>
+            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+              <h3 class="text-xl font-bold mb-4 text-gray-800">Magnitude Distribution</h3>
               <div style="height: 500px;">
                 <canvas id="magnitude-chart"></canvas>
               </div>
